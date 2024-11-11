@@ -1,4 +1,4 @@
-# Python_simple_continerized appURL checker
+# Python_simple_containerized_app / URL checker
 
 This project creates a simple Python service that queries two URLs and checks their status and response time. The service runs an HTTP server that produces metrics in Prometheus format.
 
