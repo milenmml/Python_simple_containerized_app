@@ -19,7 +19,7 @@ This project creates a simple Python service that queries two URLs and checks th
 
 1. **Build Docker Image**
    ```bash
-   docker build -t <your-docker-registry>/url-monitoring-service .
+   docker build -t <your-docker-registry>/url-checker .
 
 2. **Build and Tag Docker Image**
    ```bash
@@ -27,7 +27,7 @@ This project creates a simple Python service that queries two URLs and checks th
 
 3. **Push Docker Image to Registry**
    ```bash
-   docker push <your-docker-registry>/url-monitoring-service:latest
+   docker push <your-docker-registry>/url-checker:latest
 
 4. **Update image in Helm Chart values.yaml**
    ```bash
@@ -37,7 +37,14 @@ This project creates a simple Python service that queries two URLs and checks th
 
 Alternatively, you can use the default image specified in the Helm chart.
 
-5. **Access the Service**
+5. **Deploy to Kubernetes**
+
+Install the Helm chart:
+   ```bash
+   helm install url-checker ./url-checker
+   ```
+
+6. **Access the Service**
 
 Find the NodePort assigned to your service (default is 30001):
    ```bash
@@ -48,7 +55,7 @@ Access the metrics at `http://<your-k8s-node-ip>:30001/metrics`.
 
 Alternatively, if your cluster is not accessible from your PC, use `kubectl port-forward`:
    ```bash
-   kubectl port-forward svc/url-monitoring-service 30001:9001
+   kubectl port-forward svc/url-checker 30001:9001
    ```
 Then access the metrics at `http://localhost:30001/metrics`.
 
