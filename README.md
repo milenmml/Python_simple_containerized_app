@@ -1,4 +1,4 @@
-# Python_simple_containerized_app / URL checker
+# Python_simple_continerized appURL checker
 
 This project creates a simple Python service that queries two URLs and checks their status and response time. The service runs an HTTP server that produces metrics in Prometheus format.
 
@@ -19,7 +19,7 @@ This project creates a simple Python service that queries two URLs and checks th
 
 1. **Build Docker Image**
    ```bash
-   docker build -t <your-docker-registry>/url-monitoring-service .
+   docker build -t <your-docker-registry>/url-checker .
 
 2. **Build and Tag Docker Image**
    ```bash
@@ -27,7 +27,7 @@ This project creates a simple Python service that queries two URLs and checks th
 
 3. **Push Docker Image to Registry**
    ```bash
-   docker push <your-docker-registry>/url-monitoring-service:latest
+   docker push <your-docker-registry>/url-checker:latest
 
 4. **Update image in Helm Chart values.yaml**
    ```bash
@@ -48,7 +48,7 @@ Access the metrics at `http://<your-k8s-node-ip>:30001/metrics`.
 
 Alternatively, if your cluster is not accessible from your PC, use `kubectl port-forward`:
    ```bash
-   kubectl port-forward svc/url-monitoring-service 30001:9001
+   kubectl port-forward svc/url-checker 30001:9001
    ```
 Then access the metrics at `http://localhost:30001/metrics`.
 
