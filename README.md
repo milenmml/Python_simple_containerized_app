@@ -37,7 +37,14 @@ This project creates a simple Python service that queries two URLs and checks th
 
 Alternatively, you can use the default image specified in the Helm chart.
 
-5. **Access the Service**
+5. **Deploy to Kubernetes**
+
+Install the Helm chart:
+   ```bash
+   helm install url-checker ./url-checker
+   ```
+
+6. **Access the Service**
 
 Find the NodePort assigned to your service (default is 30001):
    ```bash
