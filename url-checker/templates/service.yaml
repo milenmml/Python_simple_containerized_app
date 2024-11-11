@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "url-checker.fullname" . }}
+  labels:
+    {{- include "url-checker.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      protocol: TCP
+      name: flask
+      {{- if eq .Values.service.type "NodePort" }}
+      nodePort: 30001
+      {{- end }}
+    - port: {{ .Values.service.prometheusPort }}
+      targetPort: {{ .Values.service.prometheusTargetPort }}
+      protocol: TCP
+      name: prometheus
+      {{- if eq .Values.service.type "NodePort" }}
+      nodePort: 30002
+      {{- end }}
+  selector:
+    {{- include "url-checker.selectorLabels" . | nindent 4 }}
