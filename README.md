@@ -41,21 +41,21 @@ Alternatively, you can use the default image specified in the Helm chart.
 
 Install the Helm chart:
    ```bash
-   helm install url-checker ./url-checker
+   helm install url-checker ./url-checker -n url-checker --create-namespace
    ```
 
 6. **Access the Service**
 
 Find the NodePort assigned to your service (default is 30001):
    ```bash
-   kubectl get services
+   kubectl get services -n url-checker
    ```
 
 Access the metrics at `http://<your-k8s-node-ip>:30001/metrics`.
 
 Alternatively, if your cluster is not accessible from your PC, use `kubectl port-forward`:
    ```bash
-   kubectl port-forward svc/url-checker 30001:9001
+   kubectl port-forward svc/url-checker 30001:9001 -n url-checker
    ```
 Then access the metrics at `http://localhost:30001/metrics`.
 
